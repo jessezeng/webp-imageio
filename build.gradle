@@ -1,0 +1,25 @@
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir 'src/javase/java'
+        }
+        resources {
+            srcDir 'src/javase/resources'
+        }
+    }
+}
+
+tasks.withType(Test) {
+  systemProperty 'java.library.path', file('build/src/main/c')
+}
